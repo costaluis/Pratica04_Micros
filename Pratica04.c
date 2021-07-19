@@ -48,8 +48,10 @@ void read_button(){
 } 
 
 void main(){
-    // 
+    // Define o pino C2 como output
     TRISC2_BIT = 0;
+
+    // Configuracao do PWM
     PR2 = 255;
     CCPR1L = 0b00000000;
     CCP1CON = 0b00001100;
