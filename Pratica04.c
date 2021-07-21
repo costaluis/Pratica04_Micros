@@ -62,11 +62,13 @@ void main(){
     // Inicia a utilizacao do LCD
     Lcd_Init();
 
-    // Limpa o display
-    Lcd_Cmd(_LCD_CLEAR);
+    Lcd_Cmd(_LCD_CURSOR_OFF);
 
     // Liga o display
     Lcd_Cmd(_LCD_TURN_ON);
+
+    // Limpa o display
+    Lcd_Cmd(_LCD_CLEAR);
     
     // Define o pino C2 como output
     TRISC2_BIT = 0;
@@ -131,10 +133,8 @@ void main(){
         // Realiza a conversao de float para cadeia de char para ser exibido no display
         IntToStr(rpm, output);
 
-        strcpy(output, "arroz\0");
-
         // Exibe o valor lido na primeira linha do display
-        Lcd_Out(1, 1, "teste");
+        Lcd_Out(1, 1, output);
 
         Delay_ms(300);
     }

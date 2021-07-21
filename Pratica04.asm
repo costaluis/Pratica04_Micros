@@ -104,65 +104,69 @@ _main:
 ;Pratica04.c,61 :: 		void main(){
 ;Pratica04.c,63 :: 		Lcd_Init();
 	CALL        _Lcd_Init+0, 0
-;Pratica04.c,66 :: 		Lcd_Cmd(_LCD_CLEAR);
-	MOVLW       1
-	MOVWF       FARG_Lcd_Cmd_out_char+0 
-	CALL        _Lcd_Cmd+0, 0
-;Pratica04.c,69 :: 		Lcd_Cmd(_LCD_TURN_ON);
+;Pratica04.c,65 :: 		Lcd_Cmd(_LCD_CURSOR_OFF);
 	MOVLW       12
 	MOVWF       FARG_Lcd_Cmd_out_char+0 
 	CALL        _Lcd_Cmd+0, 0
-;Pratica04.c,72 :: 		TRISC2_BIT = 0;
+;Pratica04.c,68 :: 		Lcd_Cmd(_LCD_TURN_ON);
+	MOVLW       12
+	MOVWF       FARG_Lcd_Cmd_out_char+0 
+	CALL        _Lcd_Cmd+0, 0
+;Pratica04.c,71 :: 		Lcd_Cmd(_LCD_CLEAR);
+	MOVLW       1
+	MOVWF       FARG_Lcd_Cmd_out_char+0 
+	CALL        _Lcd_Cmd+0, 0
+;Pratica04.c,74 :: 		TRISC2_BIT = 0;
 	BCF         TRISC2_bit+0, BitPos(TRISC2_bit+0) 
-;Pratica04.c,75 :: 		TRISC0_BIT = 1;
+;Pratica04.c,77 :: 		TRISC0_BIT = 1;
 	BSF         TRISC0_bit+0, BitPos(TRISC0_bit+0) 
-;Pratica04.c,79 :: 		PR2 = 255;
+;Pratica04.c,81 :: 		PR2 = 255;
 	MOVLW       255
 	MOVWF       PR2+0 
-;Pratica04.c,83 :: 		CCPR1L = 0b00000000;
+;Pratica04.c,85 :: 		CCPR1L = 0b00000000;
 	CLRF        CCPR1L+0 
-;Pratica04.c,84 :: 		CCP1CON = 0b00001100;
+;Pratica04.c,86 :: 		CCP1CON = 0b00001100;
 	MOVLW       12
 	MOVWF       CCP1CON+0 
-;Pratica04.c,89 :: 		T2CON = 0b00000001;
+;Pratica04.c,91 :: 		T2CON = 0b00000001;
 	MOVLW       1
 	MOVWF       T2CON+0 
-;Pratica04.c,92 :: 		TRISA = 0xFF;
+;Pratica04.c,94 :: 		TRISA = 0xFF;
 	MOVLW       255
 	MOVWF       TRISA+0 
-;Pratica04.c,95 :: 		ADCON1 = 0x0F;
+;Pratica04.c,97 :: 		ADCON1 = 0x0F;
 	MOVLW       15
 	MOVWF       ADCON1+0 
-;Pratica04.c,98 :: 		T2CON.F2 = 1;
+;Pratica04.c,100 :: 		T2CON.F2 = 1;
 	BSF         T2CON+0, 2 
-;Pratica04.c,105 :: 		T1CON = 0b10000111;
+;Pratica04.c,107 :: 		T1CON = 0b10000111;
 	MOVLW       135
 	MOVWF       T1CON+0 
-;Pratica04.c,112 :: 		T0CON = 0b00000100;
+;Pratica04.c,114 :: 		T0CON = 0b00000100;
 	MOVLW       4
 	MOVWF       T0CON+0 
-;Pratica04.c,115 :: 		INTCON = 0b11100000;
+;Pratica04.c,117 :: 		INTCON = 0b11100000;
 	MOVLW       224
 	MOVWF       INTCON+0 
-;Pratica04.c,118 :: 		INTCON2.F2 = 1;
+;Pratica04.c,120 :: 		INTCON2.F2 = 1;
 	BSF         INTCON2+0, 2 
-;Pratica04.c,121 :: 		T0CON.F0 = 1;
+;Pratica04.c,123 :: 		T0CON.F0 = 1;
 	BSF         T0CON+0, 0 
-;Pratica04.c,123 :: 		TMR0H = 0x0B;
+;Pratica04.c,125 :: 		TMR0H = 0x0B;
 	MOVLW       11
 	MOVWF       TMR0H+0 
-;Pratica04.c,124 :: 		TMR0L = 0xDC;
+;Pratica04.c,126 :: 		TMR0L = 0xDC;
 	MOVLW       220
 	MOVWF       TMR0L+0 
-;Pratica04.c,126 :: 		while(1){
+;Pratica04.c,128 :: 		while(1){
 L_main5:
-;Pratica04.c,127 :: 		read_button();
+;Pratica04.c,129 :: 		read_button();
 	CALL        _read_button+0, 0
-;Pratica04.c,129 :: 		Lcd_Cmd(_LCD_CLEAR);
+;Pratica04.c,131 :: 		Lcd_Cmd(_LCD_CLEAR);
 	MOVLW       1
 	MOVWF       FARG_Lcd_Cmd_out_char+0 
 	CALL        _Lcd_Cmd+0, 0
-;Pratica04.c,132 :: 		IntToStr(rpm, output);
+;Pratica04.c,134 :: 		IntToStr(rpm, output);
 	MOVF        _rpm+0, 0 
 	MOVWF       FARG_IntToStr_input+0 
 	MOVF        _rpm+1, 0 
@@ -172,24 +176,14 @@ L_main5:
 	MOVLW       hi_addr(_output+0)
 	MOVWF       FARG_IntToStr_output+1 
 	CALL        _IntToStr+0, 0
-;Pratica04.c,134 :: 		strcpy(output, "arroz\0");
-	MOVLW       _output+0
-	MOVWF       FARG_strcpy_to+0 
-	MOVLW       hi_addr(_output+0)
-	MOVWF       FARG_strcpy_to+1 
-	MOVLW       ?lstr1_Pratica04+0
-	MOVWF       FARG_strcpy_from+0 
-	MOVLW       hi_addr(?lstr1_Pratica04+0)
-	MOVWF       FARG_strcpy_from+1 
-	CALL        _strcpy+0, 0
-;Pratica04.c,137 :: 		Lcd_Out(1, 1, "teste");
+;Pratica04.c,137 :: 		Lcd_Out(1, 1, output);
 	MOVLW       1
 	MOVWF       FARG_Lcd_Out_row+0 
 	MOVLW       1
 	MOVWF       FARG_Lcd_Out_column+0 
-	MOVLW       ?lstr2_Pratica04+0
+	MOVLW       _output+0
 	MOVWF       FARG_Lcd_Out_text+0 
-	MOVLW       hi_addr(?lstr2_Pratica04+0)
+	MOVLW       hi_addr(_output+0)
 	MOVWF       FARG_Lcd_Out_text+1 
 	CALL        _Lcd_Out+0, 0
 ;Pratica04.c,139 :: 		Delay_ms(300);
