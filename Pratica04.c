@@ -83,7 +83,7 @@ void main(){
     // Seta o valor inicial para um duty cicle 0
     // Configura o modo CCP para PWM
     CCPR1L = 0b00000000;
-    CCP1CON = 0b00001100;
+    CCP1CON = 0b00001111;
 
     // Configuracao do Timer2 - Sera usado para no PWM
     // Sem postscale

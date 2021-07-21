@@ -125,8 +125,8 @@ _main:
 	MOVWF       PR2+0 
 ;Pratica04.c,85 :: 		CCPR1L = 0b00000000;
 	CLRF        CCPR1L+0 
-;Pratica04.c,86 :: 		CCP1CON = 0b00001100;
-	MOVLW       12
+;Pratica04.c,86 :: 		CCP1CON = 0b00001111;
+	MOVLW       15
 	MOVWF       CCP1CON+0 
 ;Pratica04.c,91 :: 		T2CON = 0b00000001;
 	MOVLW       1
